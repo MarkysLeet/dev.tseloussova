@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-yellow: #FFCC00;
+  --font-display: var(--font-oswald);
+  --font-body: var(--font-inter);
+
+  /* Extended colors */
+  --color-surface: #0a0a0a;
+  --color-surface-hover: #171717;
+}
+
+/* Custom Utilities */
+@layer utilities {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+:root {
+  --background: #000000;
+  --foreground: #ffffff;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #FFCC00 transparent;
+}
+
+/* Custom scrollbar — site-wide */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FFCC00;
+  border-radius: 3px;
+}
+
+/* Narrower scrollbar inside the privacy modal */
+.modal-scroll::-webkit-scrollbar {
+  width: 4px;
+}
