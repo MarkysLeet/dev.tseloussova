@@ -8,29 +8,53 @@ export function Preloader() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // Animate progress bar to 100% then hide
-    const start = performance.now();
-    const duration = 1800;
     let rafId: number;
     let timerId: ReturnType<typeof setTimeout>;
+    let isFinished = false;
+
+    const completeLoading = () => {
+      if (isFinished) return;
+      isFinished = true;
+      setProgress(100);
+      timerId = setTimeout(() => setIsVisible(false), 300);
+    };
+
+    if (document.readyState === 'complete') {
+      completeLoading();
+      return;
+    }
+
+    const start = performance.now();
+    const fastDuration = 1000; // 0 to 80% in 1s
+    const slowDuration = 10000; // 80% to 99% in 10s (illusion of heavy loading)
 
     const tick = (now: number) => {
+      if (isFinished) return;
       const elapsed = now - start;
-      const pct = Math.min((elapsed / duration) * 100, 100);
-      setProgress(pct);
-
-      if (pct < 100) {
-        rafId = requestAnimationFrame(tick);
+      
+      let pct = 0;
+      if (elapsed < fastDuration) {
+        pct = (elapsed / fastDuration) * 80;
       } else {
-        // Small pause at 100% before exit
-        timerId = setTimeout(() => setIsVisible(false), 300);
+        const slowElapsed = elapsed - fastDuration;
+        pct = 80 + (slowElapsed / slowDuration) * 19;
+      }
+
+      setProgress(Math.min(pct, 99));
+
+      if (pct < 99) {
+        rafId = requestAnimationFrame(tick);
       }
     };
 
     rafId = requestAnimationFrame(tick);
+
+    window.addEventListener('load', completeLoading);
+
     return () => {
       cancelAnimationFrame(rafId);
       clearTimeout(timerId);
+      window.removeEventListener('load', completeLoading);
     };
   }, []);
 
