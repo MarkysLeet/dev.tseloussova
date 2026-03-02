@@ -136,6 +136,7 @@ const VideoSlide = ({ video, isActive, shouldLoad, orientation }: { video: Video
             className={`max-h-full max-w-full ${orientation === 'vertical' ? 'object-contain' : 'object-contain'} shadow-2xl bg-black`}
             playsInline
             loop
+            preload={isActive ? 'auto' : 'auto'} // preload adjacent slides when shouldLoad is true
             onTimeUpdate={handleTimeUpdate}
             onPlay={() => setIsPlaying(true)}
             onPause={() => setIsPlaying(false)}

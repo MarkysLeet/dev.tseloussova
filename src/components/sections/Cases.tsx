@@ -80,6 +80,7 @@ const MobileVideoCard = ({ video, index, openModal, variants }: VideoCardProps) 
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [src, setSrc] = useState(index <= 2 ? video.videoSrc : '');
 
   useEffect(() => {
     const videoEl = videoRef.current;
@@ -88,11 +89,35 @@ const MobileVideoCard = ({ video, index, openModal, variants }: VideoCardProps) 
     }
   }, []);
 
+  // Hybrid lazy loading observer
+  useEffect(() => {
+    if (src || !containerRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setSrc(video.videoSrc);
+          observer.disconnect();
+        }
+      },
+      {
+        rootMargin: '800px',
+      }
+    );
+
+    observer.observe(containerRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [src, video.videoSrc]);
+
+  // Autoplay observer
   useEffect(() => {
     const videoEl = videoRef.current;
     const containerEl = containerRef.current;
 
-    if (!videoEl || !containerEl) return;
+    if (!videoEl || !containerEl || !src) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -112,7 +137,7 @@ const MobileVideoCard = ({ video, index, openModal, variants }: VideoCardProps) 
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [src]);
 
   return (
     <motion.div
@@ -133,7 +158,7 @@ const MobileVideoCard = ({ video, index, openModal, variants }: VideoCardProps) 
         )}
         <video
           ref={videoRef}
-          src={video.videoSrc}
+          src={src}
           muted
           playsInline
           preload="metadata"
@@ -152,7 +177,9 @@ const MobileVideoCard = ({ video, index, openModal, variants }: VideoCardProps) 
 
 const DesktopReelCard = ({ video, index, openModal, variants }: VideoCardProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [src, setSrc] = useState(index <= 2 ? video.videoSrc : '');
 
   useEffect(() => {
     const videoEl = videoRef.current;
@@ -161,16 +188,42 @@ const DesktopReelCard = ({ video, index, openModal, variants }: VideoCardProps) 
     }
   }, []);
 
+  // Hybrid lazy loading observer
+  useEffect(() => {
+    if (src || !containerRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setSrc(video.videoSrc);
+          observer.disconnect();
+        }
+      },
+      {
+        rootMargin: '800px',
+      }
+    );
+
+    observer.observe(containerRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [src, video.videoSrc]);
+
   const handleMouseEnter = (e: React.MouseEvent<HTMLVideoElement>) => {
+    if (!src) return;
     e.currentTarget.play().catch(error => console.log('Autoplay prevented:', error));
   };
 
   const handleMouseLeave = (e: React.MouseEvent<HTMLVideoElement>) => {
+    if (!src) return;
     e.currentTarget.pause();
   };
 
   return (
     <motion.div
+      ref={containerRef}
       key={`desktop-${video.id}`}
       variants={variants}
       initial="hidden"
@@ -187,7 +240,7 @@ const DesktopReelCard = ({ video, index, openModal, variants }: VideoCardProps) 
         )}
         <video
           ref={videoRef}
-          src={video.videoSrc}
+          src={src}
           muted
           playsInline
           preload="metadata"
@@ -208,7 +261,9 @@ const DesktopReelCard = ({ video, index, openModal, variants }: VideoCardProps) 
 
 const PromoVideoCard = ({ video, index, openModal, variants }: VideoCardProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [src, setSrc] = useState(index <= 2 ? video.videoSrc : '');
 
   useEffect(() => {
     const videoEl = videoRef.current;
@@ -217,16 +272,42 @@ const PromoVideoCard = ({ video, index, openModal, variants }: VideoCardProps) =
     }
   }, []);
 
+  // Hybrid lazy loading observer
+  useEffect(() => {
+    if (src || !containerRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setSrc(video.videoSrc);
+          observer.disconnect();
+        }
+      },
+      {
+        rootMargin: '800px',
+      }
+    );
+
+    observer.observe(containerRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [src, video.videoSrc]);
+
   const handleMouseEnter = (e: React.MouseEvent<HTMLVideoElement>) => {
+    if (!src) return;
     e.currentTarget.play().catch(error => console.log('Autoplay prevented:', error));
   };
 
   const handleMouseLeave = (e: React.MouseEvent<HTMLVideoElement>) => {
+    if (!src) return;
     e.currentTarget.pause();
   };
 
   return (
     <motion.div
+      ref={containerRef}
       key={video.id}
       variants={variants}
       initial="hidden"
@@ -243,7 +324,7 @@ const PromoVideoCard = ({ video, index, openModal, variants }: VideoCardProps) =
         )}
         <video
           ref={videoRef}
-          src={video.videoSrc}
+          src={src}
           muted
           playsInline
           preload="metadata"
