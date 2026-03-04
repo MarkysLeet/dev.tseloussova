@@ -61,7 +61,7 @@ export async function sendTelegramMessage(prevState: ActionState | null, formDat
   };
 
   const messageText = `
-🚀 <b>Новая заявка с сайта Reels Production!</b>
+🚀 <b>Новая заявка с сайта Контент под ключ!</b>
 👤 <b>Имя:</b> ${escapeHtml(name)}
 📱 <b>Контакты:</b> ${escapeHtml(contact)}
 💬 <b>Проект:</b> ${escapeHtml(projectDetails || 'Не указано')}

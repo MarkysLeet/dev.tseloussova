@@ -9,7 +9,7 @@ const navItems = [
   { id: 'cases', icon: Clapperboard, label: 'Кейсы' },
   { id: 'contact', icon: Send, label: 'Заявка', isCta: true },
   { id: 'format', icon: Layers, label: 'Формат' },
-  { id: 'faq', icon: HelpCircle, label: 'FAQ' },
+  { id: 'faq', icon: HelpCircle, label: 'Вопросы' },
 ];
 
 export const MobileNavbar = () => {

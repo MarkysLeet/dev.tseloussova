@@ -12,7 +12,7 @@ const sections = [
   { id: 'cases', name: 'Кейсы' },
   { id: 'workflow', name: 'Этапы' },
   { id: 'format', name: 'Формат' },
-  { id: 'faq', name: 'FAQ' },
+  { id: 'faq', name: 'Частые вопросы' },
   { id: 'contact', name: 'Заявка' },
 ];
 

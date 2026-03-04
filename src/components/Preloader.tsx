@@ -74,11 +74,11 @@ export function Preloader() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
-            className="mb-12 text-center"
+            className="mb-12 text-center w-full px-4"
           >
-            <span className="font-display font-bold uppercase tracking-[0.25em] text-2xl md:text-3xl text-white">
-              REELS{' '}
-              <span className="text-[#FFCC00]">PRODUCTION</span>
+            <span className="font-display uppercase tracking-widest text-xs md:text-sm text-white font-medium">
+              КОНТЕНТ ПОД{' '}
+              <span className="text-[#FFCC00]">КЛЮЧ</span>
             </span>
           </motion.div>
 
