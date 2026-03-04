@@ -48,7 +48,7 @@ export const Navbar = () => {
           className="font-display font-bold text-xl tracking-wide cursor-pointer text-white whitespace-nowrap bg-transparent border-none"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          REELS PRODUCTION
+          КОНТЕНТ ПОД КЛЮЧ
         </button>
 
         {/* Desktop Links */}

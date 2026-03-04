@@ -21,12 +21,12 @@ export default function Home() {
       <FAQ id="faq" />
       <ContactForm id="contact" />
 
-      <footer className="py-8 text-center border-t border-neutral-900 bg-[#050505] pb-32 md:pb-8 flex flex-col items-center">
-        <p className="text-neutral-500 text-sm font-mono">
-          © {new Date().getFullYear()} REELS PRODUCTION. <br className="md:hidden" /> ALL RIGHTS RESERVED.
+      <footer className="py-8 px-6 md:px-12 border-t border-neutral-900 bg-[#050505] pb-32 md:pb-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+        <p className="text-neutral-500 text-sm font-mono mb-4 md:mb-0">
+          © {new Date().getFullYear()} КОНТЕНТ ПОД КЛЮЧ. <br className="md:hidden" /> Все права защищены.
         </p>
-        <div className="text-center text-xs text-zinc-500 mt-8">
-          Design & Development by Grozan Studio.
+        <div className="text-xs text-zinc-500 md:text-right">
+          Дизайн и разработка — Grozan Studio.
         </div>
       </footer>
     </main>

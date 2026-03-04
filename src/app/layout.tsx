@@ -21,19 +21,19 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Reels Production | Видеосъемка для бизнеса",
+  title: "Контент под ключ | Видеосъемка для бизнеса",
   description: "Профессиональная видеосъемка и монтаж Reels для экспертов и бизнеса. Создаем вовлекающий контент под ключ для ваших соцсетей.",
   openGraph: {
-    title: "Reels Production | Видеосъемка для бизнеса",
+    title: "Контент под ключ | Видеосъемка для бизнеса",
     description: "Профессиональная видеосъемка и монтаж Reels для экспертов и бизнеса. Создаем вовлекающий контент под ключ для ваших соцсетей.",
     images: ["https://res.cloudinary.com/dcnwhciua/image/upload/v1772186868/%D0%BD%D1%83%D0%BA%D0%B0%D0%BA%D0%B1%D1%8B%D0%B4%D0%B0_mgvhh0.png"],
     type: "website",
     locale: "ru_RU",
-    siteName: "Reels Production",
+    siteName: "Контент под ключ",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Reels Production | Видеосъемка для бизнеса",
+    title: "Контент под ключ | Видеосъемка для бизнеса",
     description: "Профессиональная видеосъемка и монтаж Reels для экспертов и бизнеса. Создаем вовлекающий контент под ключ для ваших соцсетей.",
     images: ["https://res.cloudinary.com/dcnwhciua/image/upload/v1772186868/%D0%BD%D1%83%D0%BA%D0%B0%D0%BA%D0%B1%D1%8B%D0%B4%D0%B0_mgvhh0.png"],
   },
@@ -57,7 +57,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "ProfessionalService",
-              "name": "Reels Production",
+              "name": "Контент под ключ",
               "description": "Профессиональная съемка Reels для экспертов и бизнеса. 10 Reels за 1 съемочный день.",
               "provider": {
                 "@type": "Person",

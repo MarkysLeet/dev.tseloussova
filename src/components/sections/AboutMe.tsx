@@ -55,16 +55,21 @@ export const AboutMe = ({ id }: { id?: string }) => {
             </p>
           </div>
 
-          <a
-            href="https://www.instagram.com/tselous.sova"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 px-6 py-3 border border-[#FFCC00] text-[#FFCC00] hover:bg-[#FFCC00] hover:text-black active:scale-95 transition-all w-full md:w-auto mt-6 rounded-full font-medium"
-          >
-            <span className="text-lg hidden md:inline">Больше бэкстейджа и лайфа в Instagram</span>
-            <span className="text-lg inline md:hidden">Лайф в Instagram</span>
-            <Instagram className="w-5 h-5" />
-          </a>
+          <div className="mt-6 w-full md:w-auto">
+            <a
+              href="https://www.instagram.com/tselous.sova"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 px-6 py-3 border border-[#FFCC00] text-[#FFCC00] hover:bg-[#FFCC00] hover:text-black active:scale-95 transition-all w-full md:w-auto rounded-full font-medium"
+            >
+              <span className="text-lg hidden md:inline">Больше рабочего процесса</span>
+              <span className="text-lg inline md:hidden">Рабочий процесс</span>
+              <Instagram className="w-5 h-5" />
+            </a>
+            <p className="text-[10px] text-zinc-500 mt-2 max-w-sm leading-tight text-center md:text-left">
+              *Instagram принадлежит компании Meta, признанной экстремистской организацией и запрещенной в РФ.
+            </p>
+          </div>
         </motion.div>
       </div>
     </Section>
