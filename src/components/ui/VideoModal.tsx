@@ -174,8 +174,7 @@ const VideoSlide = ({ video, isActive, shouldLoad, orientation }: { video: Video
                 transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
                 className="mt-6 flex flex-col items-center text-white/70 pointer-events-none"
               >
-                <ChevronUp className="w-8 h-8 -mb-2" />
-                <span className="text-xs uppercase tracking-widest font-semibold">Свайп</span>
+                <ChevronUp className="w-8 h-8" />
               </motion.div>
             </div>
 

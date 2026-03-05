@@ -24,3 +24,8 @@
  ✓ Compiled in 438ms (1406 modules)
  ✓ Compiled in 2.9s (1406 modules)
  GET / 200 in 201ms
+ ✓ Compiled in 5.9s (1406 modules)
+ ✓ Compiled in 692ms (1406 modules)
+ ✓ Compiled in 993ms (1406 modules)
+ ✓ Compiled in 761ms (1406 modules)
+ GET / 200 in 179ms

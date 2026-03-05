@@ -316,7 +316,7 @@ export const Cases = ({ id }: { id?: string }) => {
       skipSnaps: false,
       inViewThreshold: 0.5,
     },
-    [Autoplay({ delay: 4500, stopOnInteraction: false, stopOnMouseEnter: false })]
+    [Autoplay({ delay: 4500, stopOnInteraction: true, stopOnMouseEnter: true })]
   );
 
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -434,15 +434,15 @@ export const Cases = ({ id }: { id?: string }) => {
               {/* Navigation Arrows */}
               <button
                 onClick={scrollPrev}
-                className="absolute left-[30%] top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-zinc-900/80 border border-white/10 text-white hover:border-white/30 hover:text-[#FFCC00] transition-colors duration-300 backdrop-blur-sm"
+                className="absolute left-[28%] top-[40%] -translate-y-1/2 -translate-x-1/2 z-20 text-white/50 hover:text-[#FFCC00] transition-colors p-2"
               >
-                <ChevronLeft className="w-6 h-6" />
+                <ChevronLeft size={48} />
               </button>
               <button
                 onClick={scrollNext}
-                className="absolute right-[30%] top-1/2 -translate-y-1/2 translate-x-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-zinc-900/80 border border-white/10 text-white hover:border-white/30 hover:text-[#FFCC00] transition-colors duration-300 backdrop-blur-sm"
+                className="absolute right-[28%] top-[40%] -translate-y-1/2 translate-x-1/2 z-20 text-white/50 hover:text-[#FFCC00] transition-colors p-2"
               >
-                <ChevronRight className="w-6 h-6" />
+                <ChevronRight size={48} />
               </button>
             </div>
           </motion.div>
@@ -497,15 +497,15 @@ export const Cases = ({ id }: { id?: string }) => {
               {/* Navigation Arrows */}
               <button
                 onClick={scrollPrev}
-                className="absolute left-[12%] top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-zinc-900/80 border border-white/10 text-white hover:border-white/30 hover:text-[#FFCC00] transition-colors duration-300 backdrop-blur-sm"
+                className="absolute left-[8%] top-[45%] -translate-y-1/2 -translate-x-1/2 z-20 text-white/50 hover:text-[#FFCC00] transition-colors p-2"
               >
-                <ChevronLeft className="w-6 h-6" />
+                <ChevronLeft size={48} />
               </button>
               <button
                 onClick={scrollNext}
-                className="absolute right-[12%] top-1/2 -translate-y-1/2 translate-x-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-zinc-900/80 border border-white/10 text-white hover:border-white/30 hover:text-[#FFCC00] transition-colors duration-300 backdrop-blur-sm"
+                className="absolute right-[8%] top-[45%] -translate-y-1/2 translate-x-1/2 z-20 text-white/50 hover:text-[#FFCC00] transition-colors p-2"
               >
-                <ChevronRight className="w-6 h-6" />
+                <ChevronRight size={48} />
               </button>
             </div>
           </motion.div>
