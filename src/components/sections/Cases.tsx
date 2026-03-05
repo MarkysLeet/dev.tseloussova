@@ -77,6 +77,7 @@ interface VideoCardProps {
   index: number;
   openModal: (index: number) => void;
   variants: any;
+  isActive?: boolean;
 }
 
 const MobileVideoCard = ({ video, index, openModal, variants }: VideoCardProps) => {
@@ -178,11 +179,11 @@ const MobileVideoCard = ({ video, index, openModal, variants }: VideoCardProps) 
   );
 };
 
-const DesktopReelCard = ({ video, index, openModal, variants }: VideoCardProps) => {
+const DesktopReelCard = ({ video, index, openModal, variants, isActive = false }: VideoCardProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [src, setSrc] = useState(index <= 2 ? video.videoSrc : '');
+  const [src, setSrc] = useState(video.videoSrc); // Load all for carousel context, but could be lazy loaded
 
   useEffect(() => {
     const videoEl = videoRef.current;
@@ -191,38 +192,14 @@ const DesktopReelCard = ({ video, index, openModal, variants }: VideoCardProps) 
     }
   }, []);
 
-  // Hybrid lazy loading observer
   useEffect(() => {
-    if (src || !containerRef.current) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setSrc(video.videoSrc);
-          observer.disconnect();
-        }
-      },
-      {
-        rootMargin: '800px',
-      }
-    );
-
-    observer.observe(containerRef.current);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [src, video.videoSrc]);
-
-  const handleMouseEnter = (e: React.MouseEvent<HTMLVideoElement>) => {
-    if (!src) return;
-    e.currentTarget.play().catch(error => console.log('Autoplay prevented:', error));
-  };
-
-  const handleMouseLeave = (e: React.MouseEvent<HTMLVideoElement>) => {
-    if (!src) return;
-    e.currentTarget.pause();
-  };
+    if (!videoRef.current || !src) return;
+    if (isActive) {
+      videoRef.current.play().catch(e => console.log('Autoplay prevented:', e));
+    } else {
+      videoRef.current.pause();
+    }
+  }, [isActive, src]);
 
   return (
     <motion.div
@@ -232,10 +209,10 @@ const DesktopReelCard = ({ video, index, openModal, variants }: VideoCardProps) 
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "50px" }}
-      className="group relative cursor-pointer"
+      className={`group relative cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${isActive ? 'scale-[1.15] z-10 opacity-100 mx-4' : 'scale-[0.85] z-0 opacity-40 mx-2'}`}
       onClick={() => openModal(index)}
     >
-      <div className={`aspect-[9/16] border border-neutral-800 group-hover:border-[#FFCC00] transition-all duration-300 overflow-hidden relative rounded-xl ${!isLoaded ? 'bg-zinc-800/50 animate-pulse' : 'bg-transparent'}`}>
+      <div className={`aspect-[9/16] border border-neutral-800 ${isActive ? 'border-[#FFCC00]' : ''} transition-all duration-700 overflow-hidden relative rounded-xl shadow-2xl ${!isLoaded ? 'bg-zinc-800/50 animate-pulse' : 'bg-transparent'}`}>
         {!isLoaded && (
           <div className="absolute inset-0 m-auto flex items-center justify-center">
              <Loader2 className="w-8 h-8 text-zinc-500 animate-spin" />
@@ -245,28 +222,27 @@ const DesktopReelCard = ({ video, index, openModal, variants }: VideoCardProps) 
           ref={videoRef}
           src={src}
           muted
+          loop
           playsInline
           preload="metadata"
           onLoadedData={() => setIsLoaded(true)}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-105 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+          className={`w-full h-full object-cover transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
         />
       </div>
 
-      <div className="mt-6">
-        <h3 className="font-display font-bold text-2xl text-white mb-2 uppercase group-hover:text-[#FFCC00] transition-colors duration-300">{video.company}</h3>
-        <p className="text-sm text-zinc-400 mt-1 line-clamp-2">{video.description}</p>
+      <div className={`mt-6 transition-all duration-700 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+        <h3 className="font-display font-bold text-xl md:text-2xl text-white mb-2 uppercase text-[#FFCC00] text-center">{video.company}</h3>
+        <p className="text-xs md:text-sm text-zinc-400 mt-1 line-clamp-2 text-center">{video.description}</p>
       </div>
     </motion.div>
   );
 };
 
-const PromoVideoCard = ({ video, index, openModal, variants }: VideoCardProps) => {
+const PromoVideoCard = ({ video, index, openModal, variants, isActive = false }: VideoCardProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [src, setSrc] = useState(index <= 2 ? video.videoSrc : '');
+  const [src, setSrc] = useState(video.videoSrc);
 
   useEffect(() => {
     const videoEl = videoRef.current;
@@ -275,38 +251,14 @@ const PromoVideoCard = ({ video, index, openModal, variants }: VideoCardProps) =
     }
   }, []);
 
-  // Hybrid lazy loading observer
   useEffect(() => {
-    if (src || !containerRef.current) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setSrc(video.videoSrc);
-          observer.disconnect();
-        }
-      },
-      {
-        rootMargin: '800px',
-      }
-    );
-
-    observer.observe(containerRef.current);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [src, video.videoSrc]);
-
-  const handleMouseEnter = (e: React.MouseEvent<HTMLVideoElement>) => {
-    if (!src) return;
-    e.currentTarget.play().catch(error => console.log('Autoplay prevented:', error));
-  };
-
-  const handleMouseLeave = (e: React.MouseEvent<HTMLVideoElement>) => {
-    if (!src) return;
-    e.currentTarget.pause();
-  };
+    if (!videoRef.current || !src) return;
+    if (isActive) {
+      videoRef.current.play().catch(e => console.log('Autoplay prevented:', e));
+    } else {
+      videoRef.current.pause();
+    }
+  }, [isActive, src]);
 
   return (
     <motion.div
@@ -316,10 +268,10 @@ const PromoVideoCard = ({ video, index, openModal, variants }: VideoCardProps) =
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "50px" }}
-      className="group relative cursor-pointer"
+      className={`group relative cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${isActive ? 'scale-105 z-10 opacity-100' : 'scale-90 z-0 opacity-40'}`}
       onClick={() => openModal(index)}
     >
-      <div className={`aspect-video w-full border border-neutral-800 group-hover:border-[#FFCC00] transition-all duration-300 overflow-hidden relative rounded-xl ${!isLoaded ? 'bg-zinc-800/50 animate-pulse' : 'bg-transparent'}`}>
+      <div className={`aspect-video w-full border border-neutral-800 ${isActive ? 'border-[#FFCC00]' : ''} transition-all duration-700 overflow-hidden relative rounded-xl shadow-2xl ${!isLoaded ? 'bg-zinc-800/50 animate-pulse' : 'bg-transparent'}`}>
         {!isLoaded && (
           <div className="absolute inset-0 m-auto flex items-center justify-center">
              <Loader2 className="w-8 h-8 text-zinc-500 animate-spin" />
@@ -329,17 +281,16 @@ const PromoVideoCard = ({ video, index, openModal, variants }: VideoCardProps) =
           ref={videoRef}
           src={src}
           muted
+          loop
           playsInline
           preload="metadata"
           onLoadedData={() => setIsLoaded(true)}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-105 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+          className={`w-full h-full object-cover transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
         />
       </div>
-      <div className="mt-6">
-        <h3 className="font-display font-bold text-xl text-white mb-2 uppercase group-hover:text-[#FFCC00] transition-colors duration-300">{video.company}</h3>
-        <p className="text-sm text-zinc-400 mt-1 line-clamp-2">{video.description}</p>
+      <div className={`mt-6 transition-all duration-700 text-center ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+        <h3 className="font-display font-bold text-lg md:text-xl text-white mb-2 uppercase text-[#FFCC00]">{video.company}</h3>
+        <p className="text-xs md:text-sm text-zinc-400 mt-1 line-clamp-2">{video.description}</p>
       </div>
     </motion.div>
   );
@@ -361,11 +312,33 @@ export const Cases = ({ id }: { id?: string }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       loop: true,
-      align: 'start',
+      align: 'center',
       skipSnaps: false,
+      inViewThreshold: 0.5,
     },
-    [Autoplay({ delay: 4500, stopOnInteraction: false, stopOnMouseEnter: true })]
+    [Autoplay({ delay: 4500, stopOnInteraction: false, stopOnMouseEnter: false })]
   );
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    const onSelect = () => {
+      setSelectedIndex(emblaApi.selectedScrollSnap());
+    };
+
+    emblaApi.on('select', onSelect);
+    emblaApi.on('reInit', onSelect);
+
+    // Initial call
+    onSelect();
+
+    return () => {
+      emblaApi.off('select', onSelect);
+      emblaApi.off('reInit', onSelect);
+    };
+  }, [emblaApi]);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -452,15 +425,23 @@ export const Cases = ({ id }: { id?: string }) => {
             </div>
 
             {/* Desktop View: Carousel Embla */}
-            <div className="hidden md:block w-full overflow-hidden" ref={emblaRef}>
-              <div className="flex gap-6 w-full -ml-4 pl-4 pr-10">
+            <div
+              className="hidden md:block w-full overflow-hidden"
+              ref={emblaRef}
+              style={{
+                maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
+                WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'
+              }}
+            >
+              <div className="flex w-full items-center py-10">
                 {currentVideos.map((c, index) => (
-                  <div key={`desktop-${c.id}`} className="flex-[0_0_31%] min-w-0">
+                  <div key={`desktop-${c.id}`} className="flex-[0_0_28%] min-w-0">
                     <DesktopReelCard
                       video={c}
                       index={index}
                       openModal={openModal}
                       variants={cardVariants}
+                      isActive={index === selectedIndex}
                     />
                   </div>
                 ))}
@@ -491,15 +472,23 @@ export const Cases = ({ id }: { id?: string }) => {
             </div>
 
             {/* Desktop View: Promo Carousel Embla */}
-            <div className="hidden md:block w-full overflow-hidden" ref={emblaRef}>
-              <div className="flex gap-6 w-full -ml-4 pl-4 pr-10">
+            <div
+              className="hidden md:block w-full overflow-hidden"
+              ref={emblaRef}
+              style={{
+                maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+                WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)'
+              }}
+            >
+              <div className="flex w-full items-center py-10">
                 {currentVideos.map((c, index) => (
-                  <div key={`desktop-promo-${c.id}`} className="flex-[0_0_46%] min-w-0">
+                  <div key={`desktop-promo-${c.id}`} className="flex-[0_0_65%] min-w-0">
                     <PromoVideoCard
                       video={c}
                       index={index}
                       openModal={openModal}
                       variants={cardVariants}
+                      isActive={index === selectedIndex}
                     />
                   </div>
                 ))}
