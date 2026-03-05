@@ -46,10 +46,10 @@ const VideoSlide = ({ video, isActive, shouldLoad, orientation }: { video: Video
           .then(() => setIsPlaying(true))
           .catch((error) => {
             console.log("Autoplay prevented:", error);
-            // If autoplay with sound fails, try muted
-            videoEl.muted = true;
-            setIsMuted(true);
-            videoEl.play().then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
+            // If autoplay with sound fails, we do NOT fall back to muted playback.
+            // Instead, we leave the video paused and keep isPlaying as false.
+            // The center Play button will be visible, prompting the user to start playback with sound.
+            setIsPlaying(false);
           });
       }
     } else {
