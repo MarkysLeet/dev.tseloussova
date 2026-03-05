@@ -164,9 +164,18 @@ const VideoSlide = ({ video, isActive, shouldLoad, orientation }: { video: Video
         {/* Vertical UI (TikTok Style) */}
         {orientation === 'vertical' && (
           <>
-            <div className="absolute bottom-0 left-0 w-full pt-32 pb-8 px-6 bg-gradient-to-t from-black/90 via-black/50 to-transparent pointer-events-none z-10">
-              <h3 className="text-white font-bold text-lg leading-tight mb-1">{video.company || video.title}</h3>
-              <p className="text-zinc-300 text-sm leading-snug">{video.description}</p>
+            <div className="absolute bottom-0 left-0 w-full pt-32 pb-12 px-6 bg-gradient-to-t from-black/90 via-black/50 to-transparent pointer-events-none z-10 flex flex-col items-center">
+              <div className="w-full">
+                <h3 className="text-white font-bold text-lg leading-tight mb-1">{video.company || video.title}</h3>
+                <p className="text-zinc-300 text-sm leading-snug">{video.description}</p>
+              </div>
+              <motion.div
+                animate={{ y: [0, -10, 0], opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                className="mt-6 flex flex-col items-center text-white/70 pointer-events-none"
+              >
+                <ChevronUp className="w-8 h-8" />
+              </motion.div>
             </div>
 
             {/* Scrubber for Reels */}

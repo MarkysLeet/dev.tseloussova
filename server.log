@@ -1,7 +1,31 @@
- ⨯ Failed to start server
-Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
-    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
-    at listenInCluster (node:net:1997:12)
-    at node:net:2206:7
-    at process.processTicksAndRej ⨯ Error: 'sharp' is required to be installed in standalone mode for the image optimization to function correctly. Read more at: https://nextjs.org/docs/messages/sharp-missing-in-production
- ⨯ Error: 'sharp' is required to be installed in standalone mode for the image optimization to function correctly. Read more at: https://nextjs.org/docs/messages/sharp-missing-in-production
+
+> web@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 1859ms
+ ○ Compiling / ...
+ ✓ Compiled / in 9.9s (1424 modules)
+ GET / 200 in 10789ms
+ ✓ Compiled in 5.7s (1406 modules)
+ ✓ Compiled in 645ms (1406 modules)
+ ✓ Compiled in 888ms (1406 modules)
+ ✓ Compiled in 619ms (1406 modules)
+ GET / 200 in 225ms
+ ✓ Compiled in 7.5s (1404 modules)
+ ✓ Compiled in 713ms (1406 modules)
+ ✓ Compiled in 679ms (1406 modules)
+ ✓ Compiled in 654ms (1406 modules)
+ ✓ Compiled in 704ms (1406 modules)
+ ✓ Compiled in 530ms (1406 modules)
+ ✓ Compiled in 438ms (1406 modules)
+ ✓ Compiled in 2.9s (1406 modules)
+ GET / 200 in 201ms
+ ✓ Compiled in 5.9s (1406 modules)
+ ✓ Compiled in 692ms (1406 modules)
+ ✓ Compiled in 993ms (1406 modules)
+ ✓ Compiled in 761ms (1406 modules)
+ GET / 200 in 179ms
