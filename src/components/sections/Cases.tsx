@@ -209,7 +209,7 @@ const DesktopReelCard = ({ video, index, openModal, variants, isActive = false }
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "50px" }}
-      className={`group relative cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${isActive ? 'scale-[1.15] z-10 opacity-100 mx-4' : 'scale-[0.85] z-0 opacity-40 mx-2'}`}
+      className={`group relative cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${isActive ? 'scale-100 z-10 opacity-100 mx-4' : 'scale-[0.80] z-0 opacity-40 mx-2'}`}
       onClick={() => openModal(index)}
     >
       <div className={`aspect-[9/16] border border-neutral-800 ${isActive ? 'border-[#FFCC00]' : ''} transition-all duration-700 overflow-hidden relative rounded-xl shadow-2xl ${!isLoaded ? 'bg-zinc-800/50 animate-pulse' : 'bg-transparent'}`}>
@@ -231,8 +231,8 @@ const DesktopReelCard = ({ video, index, openModal, variants, isActive = false }
       </div>
 
       <div className={`mt-6 transition-all duration-700 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        <h3 className="font-display font-bold text-xl md:text-2xl text-white mb-2 uppercase text-[#FFCC00] text-center">{video.company}</h3>
-        <p className="text-xs md:text-sm text-zinc-400 mt-1 line-clamp-2 text-center">{video.description}</p>
+        <h3 className="font-display font-bold text-xl md:text-2xl text-white mb-2 uppercase text-[#FFCC00] text-center line-clamp-2 overflow-hidden text-ellipsis">{video.company}</h3>
+        <p className="text-xs md:text-sm text-zinc-400 mt-1 line-clamp-2 text-center overflow-hidden text-ellipsis">{video.description}</p>
       </div>
     </motion.div>
   );
@@ -268,7 +268,7 @@ const PromoVideoCard = ({ video, index, openModal, variants, isActive = false }:
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "50px" }}
-      className={`group relative cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${isActive ? 'scale-105 z-10 opacity-100' : 'scale-90 z-0 opacity-40'}`}
+      className={`group relative cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${isActive ? 'scale-100 z-10 opacity-100' : 'scale-90 z-0 opacity-40'}`}
       onClick={() => openModal(index)}
     >
       <div className={`aspect-video w-full border border-neutral-800 ${isActive ? 'border-[#FFCC00]' : ''} transition-all duration-700 overflow-hidden relative rounded-xl shadow-2xl ${!isLoaded ? 'bg-zinc-800/50 animate-pulse' : 'bg-transparent'}`}>
@@ -289,8 +289,8 @@ const PromoVideoCard = ({ video, index, openModal, variants, isActive = false }:
         />
       </div>
       <div className={`mt-6 transition-all duration-700 text-center ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        <h3 className="font-display font-bold text-lg md:text-xl text-white mb-2 uppercase text-[#FFCC00]">{video.company}</h3>
-        <p className="text-xs md:text-sm text-zinc-400 mt-1 line-clamp-2">{video.description}</p>
+        <h3 className="font-display font-bold text-lg md:text-xl text-white mb-2 uppercase text-[#FFCC00] line-clamp-2 overflow-hidden text-ellipsis">{video.company}</h3>
+        <p className="text-xs md:text-sm text-zinc-400 mt-1 line-clamp-2 overflow-hidden text-ellipsis">{video.description}</p>
       </div>
     </motion.div>
   );
@@ -359,44 +359,26 @@ export const Cases = ({ id }: { id?: string }) => {
         РЕЗУЛЬТАТЫ <span className="text-[#FFCC00]">КЛИЕНТОВ</span>
       </Heading>
 
-      <div className="flex justify-between items-center mb-12 relative w-full px-6 md:px-0">
-        <div className="flex-1 hidden md:flex" />
-        <div className="flex justify-center">
-          <div className="bg-zinc-900/50 border border-white/10 rounded-full p-1 flex relative z-10">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`relative px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 z-10 active:scale-95 ${
-                  activeTab === tab.id ? 'text-black' : 'text-gray-400 hover:text-white'
-                }`}
-              >
-                {activeTab === tab.id && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute inset-0 bg-yellow-400 rounded-full -z-10"
-                    transition={{ type: "spring", bounce: 0, duration: 0.3 }}
-                  />
-                )}
-                {tab.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="flex-1 hidden md:flex justify-end gap-3 z-20 relative">
-          <button
-            onClick={scrollPrev}
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-zinc-900/80 border border-white/10 text-white hover:border-white/30 hover:text-[#FFCC00] transition-colors duration-300"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <button
-            onClick={scrollNext}
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-zinc-900/80 border border-white/10 text-white hover:border-white/30 hover:text-[#FFCC00] transition-colors duration-300"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
+      <div className="flex justify-center mb-6 md:mb-12 relative w-full px-6 md:px-0">
+        <div className="bg-zinc-900/50 border border-white/10 rounded-full p-1 flex relative z-10">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`relative px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 z-10 active:scale-95 ${
+                activeTab === tab.id ? 'text-black' : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              {activeTab === tab.id && (
+                <motion.div
+                  layoutId="activeTab"
+                  className="absolute inset-0 bg-yellow-400 rounded-full -z-10"
+                  transition={{ type: "spring", bounce: 0, duration: 0.3 }}
+                />
+              )}
+              {tab.label}
+            </button>
+          ))}
         </div>
       </div>
 
@@ -425,27 +407,43 @@ export const Cases = ({ id }: { id?: string }) => {
             </div>
 
             {/* Desktop View: Carousel Embla */}
-            <div
-              className="hidden md:block w-full overflow-hidden"
-              ref={emblaRef}
-              style={{
-                maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
-                WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'
-              }}
-            >
-              <div className="flex w-full items-center py-10">
-                {currentVideos.map((c, index) => (
-                  <div key={`desktop-${c.id}`} className="flex-[0_0_28%] min-w-0">
-                    <DesktopReelCard
-                      video={c}
-                      index={index}
-                      openModal={openModal}
-                      variants={cardVariants}
-                      isActive={index === selectedIndex}
-                    />
-                  </div>
-                ))}
+            <div className="hidden md:block w-full relative">
+              <div
+                className="w-full overflow-hidden"
+                ref={emblaRef}
+                style={{
+                  maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
+                  WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'
+                }}
+              >
+                <div className="flex w-full items-center py-10">
+                  {currentVideos.map((c, index) => (
+                    <div key={`desktop-${c.id}`} className="flex-[0_0_28%] min-w-0">
+                      <DesktopReelCard
+                        video={c}
+                        index={index}
+                        openModal={openModal}
+                        variants={cardVariants}
+                        isActive={index === selectedIndex}
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
+
+              {/* Navigation Arrows */}
+              <button
+                onClick={scrollPrev}
+                className="absolute left-[30%] top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-zinc-900/80 border border-white/10 text-white hover:border-white/30 hover:text-[#FFCC00] transition-colors duration-300 backdrop-blur-sm"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              <button
+                onClick={scrollNext}
+                className="absolute right-[30%] top-1/2 -translate-y-1/2 translate-x-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-zinc-900/80 border border-white/10 text-white hover:border-white/30 hover:text-[#FFCC00] transition-colors duration-300 backdrop-blur-sm"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
             </div>
           </motion.div>
         ) : (
@@ -472,27 +470,43 @@ export const Cases = ({ id }: { id?: string }) => {
             </div>
 
             {/* Desktop View: Promo Carousel Embla */}
-            <div
-              className="hidden md:block w-full overflow-hidden"
-              ref={emblaRef}
-              style={{
-                maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
-                WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)'
-              }}
-            >
-              <div className="flex w-full items-center py-10">
-                {currentVideos.map((c, index) => (
-                  <div key={`desktop-promo-${c.id}`} className="flex-[0_0_65%] min-w-0">
-                    <PromoVideoCard
-                      video={c}
-                      index={index}
-                      openModal={openModal}
-                      variants={cardVariants}
-                      isActive={index === selectedIndex}
-                    />
-                  </div>
-                ))}
+            <div className="hidden md:block w-full relative">
+              <div
+                className="w-full overflow-hidden"
+                ref={emblaRef}
+                style={{
+                  maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+                  WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)'
+                }}
+              >
+                <div className="flex w-full items-center py-10">
+                  {currentVideos.map((c, index) => (
+                    <div key={`desktop-promo-${c.id}`} className="flex-[0_0_65%] min-w-0">
+                      <PromoVideoCard
+                        video={c}
+                        index={index}
+                        openModal={openModal}
+                        variants={cardVariants}
+                        isActive={index === selectedIndex}
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
+
+              {/* Navigation Arrows */}
+              <button
+                onClick={scrollPrev}
+                className="absolute left-[12%] top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-zinc-900/80 border border-white/10 text-white hover:border-white/30 hover:text-[#FFCC00] transition-colors duration-300 backdrop-blur-sm"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              <button
+                onClick={scrollNext}
+                className="absolute right-[12%] top-1/2 -translate-y-1/2 translate-x-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-zinc-900/80 border border-white/10 text-white hover:border-white/30 hover:text-[#FFCC00] transition-colors duration-300 backdrop-blur-sm"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
             </div>
           </motion.div>
         )}
