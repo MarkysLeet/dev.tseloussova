@@ -11,34 +11,34 @@ import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 
 const reelsCases = [
-  { id: 1, company: 'Brusconi motors', description: 'Съемка авто', videoSrc: 'https://res.cloudinary.com/dcnwhciua/video/upload/q_auto,f_auto/v1771845655/reels3_f6m63t.mp4' },
-  { id: 2, company: 'Александр Ревва', description: 'Съемка клипа «ALARM»', videoSrc: 'https://res.cloudinary.com/dcnwhciua/video/upload/q_auto,f_auto/v1771845677/reels1_qesllg.mp4' },
-  { id: 3, company: 'Премия FB «Человек года 2025»', description: 'Съемка для номинанта на премию', videoSrc: 'https://res.cloudinary.com/dcnwhciua/video/upload/q_auto,f_auto/v1771845725/reels2_thtdow.mp4' },
-  { id: 4, videoSrc: "https://res.cloudinary.com/dcnwhciua/video/upload/q_auto,f_auto/v1772022326/IMG_7333_sdzlem.mp4", company: "Bork", description: "Съемка процесса обучения для сотрудников" },
-  { id: 5, videoSrc: "https://res.cloudinary.com/dcnwhciua/video/upload/q_auto,f_auto/v1772022400/IMG_7190_r8fral.mp4", company: "Brusconi motors", description: "Съемка авто" },
-  { id: 6, videoSrc: "https://res.cloudinary.com/dcnwhciua/video/upload/q_auto,f_auto/v1772022460/AQPCY6BH119KMhn157L7H_D_U6hjCAYx3SxigwrRxiNLjEJlTeFXPj3s2FBop_Eu3Gc_fm1s83.mp4", company: "Etalist", description: "Съемка продающего Reels" },
-  { id: 7, videoSrc: "https://res.cloudinary.com/dcnwhciua/video/upload/q_auto,f_auto/v1772022461/AQOTYr2XdR6BGeqXnYVwiuhUgvHsbhM_IZU_Cmkjb9lgdgnouNFgI8VbIBr1QKi_cygmko.mp4", company: "Etalist", description: "Съемка продающего Reels" },
-  { id: 8, videoSrc: "https://res.cloudinary.com/dcnwhciua/video/upload/q_auto,f_auto/v1772022511/IMG_1421_xkjofz.mp4", company: "Geneine clinic", description: "Съемка художественного Reels" },
-  { id: 9, videoSrc: "https://res.cloudinary.com/dcnwhciua/video/upload/q_auto,f_auto/v1772022570/document_5832626026747796548_gtuqeb.mp4", company: "Riga Holiday", description: "Съемка продающего Reels" },
-  { id: 10, videoSrc: "https://res.cloudinary.com/dcnwhciua/video/upload/q_auto,f_auto/v1772022574/AQMKTu9D4s378QgI0kBMQ7iBiDDqVp_JtsHpkSgqVBez8Hhwp25AfNAjvPtdjTs_g8p9rt.mp4", company: "Riga Holiday", description: "Съемка продающего Reels" },
-  { id: 11, videoSrc: "https://res.cloudinary.com/dcnwhciua/video/upload/q_auto,f_auto/v1772022575/AQPKVQhKB4jwNSBq01YcqNCSFIBBfbhvPp52uoJwhG6A7SZM5xEJg39Py4c953C7ZEXkUFZ_dlxhpf.mp4", company: "Riga Holiday", description: "Съемка продающего Reels" },
-  { id: 12, videoSrc: "https://res.cloudinary.com/dcnwhciua/video/upload/q_auto,f_auto/v1772022578/document_5832626026747796549_pr2s73.mp4", company: "Riga Holiday", description: "Съемка продающего Reels" },
-  { id: 13, videoSrc: "https://res.cloudinary.com/dcnwhciua/video/upload/q_auto,f_auto/v1772022655/IMG_0350_bumwmc.mp4", company: "СберМаркетинг", description: "Съемка бизнес-завтрака" },
-  { id: 14, videoSrc: "https://res.cloudinary.com/dcnwhciua/video/upload/q_auto,f_auto/v1772022684/AQN3EVFJMMQQ1x4bH7Vs4OzUsdXWuGKxZrkFSRxEKZ_J9JhNjcmXZH2OJc00FrIzfeZ2IVyLQaK_nby7wm.mp4", company: "ЖК «Звездный»", description: "Съемка продающего Reels" },
-  { id: 15, videoSrc: "https://res.cloudinary.com/dcnwhciua/video/upload/q_auto,f_auto/v1772022685/AQNt7cm7reE2QvFzu6T7AuzmwQU5a8HQTtecU87CqR95Uhxz5OMEUj7vKQDGrE1_i6bjyx.mp4", company: "ЖК «Звездный»", description: "Съемка продающего Reels" },
-  { id: 16, videoSrc: "https://res.cloudinary.com/dcnwhciua/video/upload/q_auto,f_auto/v1772022690/AQOqV9u19nlqZrnpmH7MjE3Mh5Ze5g1In_2UGgsIIQ2_K29HJGScrlJc7P2CCcg_uauebg.mp4", company: "ЖК «Звездный»", description: "Съемка продающего Reels" },
-  { id: 17, videoSrc: "https://res.cloudinary.com/dcnwhciua/video/upload/q_auto,f_auto/v1772022691/AQNtRlG7Z_ts8zMA37gW5E6Dj2Eb0n2_URxvahLwmN_yE8NeOr7sqSR3rhrFsuT_gfqj1k.mp4", company: "ЖК «Звездный»", description: "Съемка продающего Reels" },
-  { id: 18, videoSrc: "https://res.cloudinary.com/dcnwhciua/video/upload/q_auto,f_auto/v1772022744/AQOM_b7MZNw0vSPMoIicrcdCmGpOpeGkP_6_E4Ij2sub6df6tw0C2ycgGtjb6wQ_bdvssw.mp4", company: "Te100steron", description: "Съемка концерта группы" },
-  { id: 19, videoSrc: "https://res.cloudinary.com/dcnwhciua/video/upload/q_auto,f_auto/v1772022777/AQPgPaZYGQ8PepGsZ5nuD_jmkMn42Vbg_w939XY0dajUByb1WhAFI8czH20n34tooBsizoIQWJG3R_doc88z.mp4", company: "Планета творчества", description: "Съемка продающего Reels" },
-  { id: 20, videoSrc: "https://res.cloudinary.com/dcnwhciua/video/upload/q_auto,f_auto/v1772022777/IMG_9998_tw0unp.mp4", company: "Планета творчества", description: "Съемка продающего Reels" },
-  { id: 21, videoSrc: "https://res.cloudinary.com/dcnwhciua/video/upload/q_auto,f_auto/v1772022764/AQMB_UpPHe0IuXuwiPGRzeLfSl8uHNskd4_VuZFVCrB3wnzjIEoVgHnsdQPfNb__ufuseh.mp4", company: "Планета творчества", description: "Съемка продающего Reels" },
-  { id: 22, videoSrc: "https://res.cloudinary.com/dcnwhciua/video/upload/q_auto,f_auto/v1772022852/IMG_3480_kozkqb.mp4", company: "Премия РУ-ТВ", description: "Съемка премии для Александра Реввы" }
+  { id: 1, company: 'Brusconi motors', description: 'Съемка авто', videoSrc: 'https://storage.yandexcloud.net/arina-reels-storage/reels3.MP4' },
+  { id: 2, company: 'Александр Ревва', description: 'Съемка клипа «ALARM»', videoSrc: 'https://storage.yandexcloud.net/arina-reels-storage/reels1.mp4' },
+  { id: 3, company: 'Премия FB «Человек года 2025»', description: 'Съемка для номинанта на премию', videoSrc: 'https://storage.yandexcloud.net/arina-reels-storage/reels2.mp4' },
+  { id: 4, videoSrc: "https://storage.yandexcloud.net/arina-reels-storage/IMG_7333.mp4", company: "Bork", description: "Съемка процесса обучения для сотрудников" },
+  { id: 5, videoSrc: "https://storage.yandexcloud.net/arina-reels-storage/brusconi_motors.mp4", company: "Brusconi motors", description: "Съемка авто" },
+  { id: 6, videoSrc: "https://storage.yandexcloud.net/arina-reels-storage/etalis1.mp4", company: "Etalist", description: "Съемка продающего Reels" },
+  { id: 7, videoSrc: "https://storage.yandexcloud.net/arina-reels-storage/etalis2.mp4", company: "Etalist", description: "Съемка продающего Reels" },
+  { id: 8, videoSrc: "https://storage.yandexcloud.net/arina-reels-storage/geneline_clinic.mp4", company: "Geneine clinic", description: "Съемка художественного Reels" },
+  { id: 9, videoSrc: "https://storage.yandexcloud.net/arina-reels-storage/riga1.mp4", company: "Riga Holiday", description: "Съемка продающего Reels" },
+  { id: 10, videoSrc: "https://storage.yandexcloud.net/arina-reels-storage/riga2.mp4", company: "Riga Holiday", description: "Съемка продающего Reels" },
+  { id: 11, videoSrc: "https://storage.yandexcloud.net/arina-reels-storage/riga3.mp4", company: "Riga Holiday", description: "Съемка продающего Reels" },
+  { id: 12, videoSrc: "https://storage.yandexcloud.net/arina-reels-storage/riga4.mp4", company: "Riga Holiday", description: "Съемка продающего Reels" },
+  { id: 13, videoSrc: "https://storage.yandexcloud.net/arina-reels-storage/sber.mp4", company: "СберМаркетинг", description: "Съемка бизнес-завтрака" },
+  { id: 14, videoSrc: "https://storage.yandexcloud.net/arina-reels-storage/star1.mp4", company: "ЖК «Звездный»", description: "Съемка продающего Reels" },
+  { id: 15, videoSrc: "https://storage.yandexcloud.net/arina-reels-storage/star2.mp4", company: "ЖК «Звездный»", description: "Съемка продающего Reels" },
+  { id: 16, videoSrc: "https://storage.yandexcloud.net/arina-reels-storage/star3.mp4", company: "ЖК «Звездный»", description: "Съемка продающего Reels" },
+  { id: 17, videoSrc: "https://storage.yandexcloud.net/arina-reels-storage/star4.mp4", company: "ЖК «Звездный»", description: "Съемка продающего Reels" },
+  { id: 18, videoSrc: "https://storage.yandexcloud.net/arina-reels-storage/te100steron.mp4", company: "Te100steron", description: "Съемка концерта группы" },
+  { id: 19, videoSrc: "https://storage.yandexcloud.net/arina-reels-storage/creativity1.mp4", company: "Планета творчества", description: "Съемка продающего Reels" },
+  { id: 20, videoSrc: "https://storage.yandexcloud.net/arina-reels-storage/creativity2.mp4", company: "Планета творчества", description: "Съемка продающего Reels" },
+  { id: 21, videoSrc: "https://storage.yandexcloud.net/arina-reels-storage/creativity3.mp4", company: "Планета творчества", description: "Съемка продающего Reels" },
+  { id: 22, videoSrc: "https://storage.yandexcloud.net/arina-reels-storage/rutv.mp4", company: "Премия РУ-ТВ", description: "Съемка премии для Александра Реввы" }
 ];
 
 const promoCases = [
-  { id: 3, company: 'Деловой престиж', description: 'Работа для премии', videoSrc: 'https://res.cloudinary.com/dcnwhciua/video/upload/q_auto,f_auto/v1772650811/IMG_7297_t6uxwo.mp4' },
-  { id: 1, company: 'RIGA HOLIDAY', description: 'Реклама для коттеджного поселка', videoSrc: 'https://res.cloudinary.com/dcnwhciua/video/upload/q_auto,f_auto/v1771847942/full1_uskqkv.mp4' },
-  { id: 2, company: 'Сибирский Конор', description: 'Съемка и монтаж с открытия барбершопа', videoSrc: 'https://res.cloudinary.com/dcnwhciua/video/upload/q_auto,f_auto/v1771846115/hero2_wdazjm.mp4' },
+  { id: 3, company: 'Деловой престиж', description: 'Работа для премии', videoSrc: 'https://storage.yandexcloud.net/arina-reels-storage/hero.mp4' },
+  { id: 1, company: 'RIGA HOLIDAY', description: 'Реклама для коттеджного поселка', videoSrc: 'https://storage.yandexcloud.net/arina-reels-storage/full1.mp4' },
+  { id: 2, company: 'Сибирский Конор', description: 'Съемка и монтаж с открытия барбершопа', videoSrc: 'https://storage.yandexcloud.net/arina-reels-storage/hero2.MP4' },
 ];
 
 const tabContentVariants = {

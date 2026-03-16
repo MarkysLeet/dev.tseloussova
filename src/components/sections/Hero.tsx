@@ -10,7 +10,7 @@ export const Hero = ({ id }: { id?: string }) => {
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
         <video
-          src="https://res.cloudinary.com/dcnwhciua/video/upload/v1771846115/hero2_wdazjm.mp4"
+          src="https://storage.yandexcloud.net/arina-reels-storage/hero2.MP4"
           poster="https://res.cloudinary.com/dcnwhciua/video/upload/so_0/v1771846115/hero2_wdazjm.jpg"
           autoPlay
           loop
