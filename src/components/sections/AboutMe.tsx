@@ -21,7 +21,7 @@ export const AboutMe = ({ id }: { id?: string }) => {
         >
           <div className="relative w-full rounded-2xl overflow-hidden h-[65vh] lg:h-auto lg:aspect-[2730/4096]">
             <Image
-              src="https://res.cloudinary.com/dcnwhciua/image/upload/v1771919388/aboutme_m4yzut.jpg"
+              src="https://storage.yandexcloud.net/arina-reels-storage/IMG_0362.JPEG"
               alt="Целоусова Арина"
               fill
               className="object-cover object-top"
