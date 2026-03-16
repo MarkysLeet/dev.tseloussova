@@ -9,6 +9,12 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'storage.yandexcloud.net',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
   async headers() {
