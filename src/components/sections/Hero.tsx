@@ -1,22 +1,33 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+import { usePreloader } from '../PreloaderContext';
 import { motion } from 'framer-motion';
 import { Button } from '../ui/Button';
 
 export const Hero = ({ id }: { id?: string }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const { isPreloaderDone } = usePreloader();
+
+  useEffect(() => {
+    if (isPreloaderDone && videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.error("Autoplay was prevented:", error);
+      });
+    }
+  }, [isPreloaderDone]);
   return (
     <section id={id} className="relative min-h-screen flex items-center justify-center overflow-hidden md:pt-20" aria-label="Главная секция">
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
         <video
+          ref={videoRef}
           src="https://storage.yandexcloud.net/arina-reels-storage/hero2.MP4"
           poster="https://res.cloudinary.com/dcnwhciua/video/upload/so_0/v1771846115/hero2_wdazjm.jpg"
-          autoPlay
-          loop
+                    loop
           muted
           playsInline
-          preload="none"
+          preload="auto"
           className="absolute inset-0 w-full h-full object-cover -z-10"
         />
         {/* Overlay for contrast */}
