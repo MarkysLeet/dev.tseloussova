@@ -2,15 +2,19 @@
 
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { usePreloader } from './PreloaderContext';
 
 export function Preloader() {
   const [isVisible, setIsVisible] = useState(true);
+  const { setPreloaderDone } = usePreloader();
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     let rafId: number;
     let timerId: ReturnType<typeof setTimeout>;
     let isFinished = false;
+
+    let maxTimeoutId: ReturnType<typeof setTimeout>;
 
     const completeLoading = () => {
       if (isFinished) return;
@@ -23,6 +27,9 @@ export function Preloader() {
       completeLoading();
       return;
     }
+    
+    // Fallback: forcefully complete after 5 seconds to prevent being stuck at 99%
+    maxTimeoutId = setTimeout(completeLoading, 5000);
 
     const start = performance.now();
     const fastDuration = 1000; // 0 to 80% in 1s
@@ -54,12 +61,13 @@ export function Preloader() {
     return () => {
       cancelAnimationFrame(rafId);
       clearTimeout(timerId);
+      clearTimeout(maxTimeoutId);
       window.removeEventListener('load', completeLoading);
     };
   }, []);
 
   return (
-    <AnimatePresence>
+    <AnimatePresence onExitComplete={() => setPreloaderDone(true)}>
       {isVisible && (
         <motion.div
           key="preloader"
