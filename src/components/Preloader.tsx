@@ -31,6 +31,9 @@ export function Preloader() {
     // Fallback: forcefully complete after 5 seconds to prevent being stuck at 99%
     maxTimeoutId = setTimeout(completeLoading, 5000);
 
+    // Fallback: forcefully complete after 5 seconds to prevent being stuck at 99%
+    maxTimeoutId = setTimeout(completeLoading, 5000);
+
     const start = performance.now();
     const fastDuration = 1000; // 0 to 80% in 1s
     const slowDuration = 10000; // 80% to 99% in 10s (illusion of heavy loading)
